@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans antialiased;
+  }
+}
+
+@layer utilities {
+  .text-gradient-ens {
+    background: linear-gradient(135deg, #0080BC 0%, #00AAFF 50%, #0080BC 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 8s ease infinite;
+  }
+
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(0, 128, 188, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 128, 188, 0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 128, 188, 0.1);
+  }
+
+  .dashboard-glass {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(56, 122, 245, 0.12);
+    box-shadow:
+      0 4px 30px rgba(0, 128, 188, 0.06),
+      0 1px 3px rgba(0, 0, 0, 0.02);
+  }
+
+  .orb-glow {
+    filter: blur(80px);
+    opacity: 0.15;
+  }
+}
