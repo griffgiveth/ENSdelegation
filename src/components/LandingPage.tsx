@@ -1,6 +1,5 @@
 import { Twitter, ExternalLink } from 'lucide-react';
 import { HeroPortrait } from './HeroPortrait';
-import { DelegateButton } from './DelegateButton';
 import { WalletButton } from './WalletButton';
 import { RewardsDashboard } from './RewardsDashboard';
 
@@ -50,37 +49,6 @@ export function LandingPage() {
             <p className="text-lg text-ens-blue-dark/50 max-w-2xl mx-auto leading-relaxed">
               I've spent the last decade building public goods like Giveth and DAppNode. I also helped coordinate the rescue of millions during the Parity and TheDAO hacks. I'm stewarding TheDAO Security Fund for Ethereum's security, helping ENS and the wider ecosystem remain unstoppable.
             </p>
-          </div>
-        </section>
-
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-ens-blue-dark via-ens-blue-mid to-ens-blue p-12 md:p-16">
-            <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full bg-ens-blue-vivid/20 blur-[100px] translate-x-1/4 -translate-y-1/4" />
-            <div className="absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full bg-ens-blue-light/10 blur-[80px] -translate-x-1/4 translate-y-1/4" />
-
-            <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
-              <div className="lg:hidden flex-shrink-0">
-                <div className="relative">
-                  <div className="absolute -inset-1 bg-white/20 rounded-2xl blur-sm" />
-                  <img
-                    src="/grifftelegram_(1).jpg"
-                    alt="Griff Green"
-                    className="relative w-48 h-48 rounded-2xl object-cover"
-                  />
-                </div>
-              </div>
-              <div className="space-y-4 text-center md:text-left">
-                <h3 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight">
-                  Ready to stake?
-                </h3>
-                <p className="text-ens-blue-light text-lg max-w-md leading-relaxed">
-                  Your tokens should be working for you. I'll keep your voting record perfect to earn you incentives while I fight to increase the protocol and token's long-term value.
-                </p>
-              </div>
-              <div className="flex-shrink-0">
-                <DelegateButton showSubtext={false} />
-              </div>
-            </div>
           </div>
         </section>
       </main>
