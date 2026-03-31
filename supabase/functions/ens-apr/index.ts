@@ -148,18 +148,31 @@ Deno.serve(async (req: Request) => {
     const totalEligibleSupply =
       Number(totalEligibleSupplyRaw / 10n ** 14n) / 10000;
 
-    const vpIncreasePercent = 0;
-    const monthlyPool = getMonthlyPool(vpIncreasePercent);
-    const monthlyDelegatorPool = monthlyPool * DELEGATOR_SHARE;
-    const apr =
-      totalEligibleSupply > 0
-        ? (monthlyDelegatorPool * 12) / totalEligibleSupply
-        : 0;
-    const aprPercent = apr * 100;
+    const vpIncreasePercent = 0; // Program not started yet; show full range
+
+    // Compute APY for min tier (0-10%, 5000 ENS pool)
+    const minMonthlyPool = 5000;
+    const minMonthlyDelegatorPool = minMonthlyPool * DELEGATOR_SHARE;
+    const aprMin = totalEligibleSupply > 0 ? (minMonthlyDelegatorPool * 12) / totalEligibleSupply : 0;
+    const aprPercentMin = aprMin * 100;
+
+    // Compute APY for max tier (>100%, 30000 ENS pool)
+    const maxMonthlyPool = 30000;
+    const maxMonthlyDelegatorPool = maxMonthlyPool * DELEGATOR_SHARE;
+    const aprMax = totalEligibleSupply > 0 ? (maxMonthlyDelegatorPool * 12) / totalEligibleSupply : 0;
+    const aprPercentMax = aprMax * 100;
+
+    // Use max for the primary display (program not yet started, show best case)
+    const monthlyPool = maxMonthlyPool;
+    const monthlyDelegatorPool = maxMonthlyDelegatorPool;
+    const apr = aprMax;
+    const aprPercent = aprPercentMax;
 
     return new Response(
       JSON.stringify({
         aprPercent: parseFloat(aprPercent.toFixed(2)),
+        aprMin: parseFloat(aprPercentMin.toFixed(2)),
+        aprMax: parseFloat(aprPercentMax.toFixed(2)),
         totalEligibleSupply: parseFloat(totalEligibleSupply.toFixed(2)),
         monthlyPool,
         monthlyDelegatorPool,

@@ -88,7 +88,7 @@ export function RewardsDashboard() {
   const [userStaked, setUserStaked] = useState('');
   const [showToast, setShowToast] = useState(false);
 
-  const [aprData, setAprData] = useState<{ aprPercent: number; monthlyDelegatorPool: number; totalEligibleSupply: number } | null>(null);
+  const [aprData, setAprData] = useState<{ aprPercent: number; aprMin: number; aprMax: number; monthlyDelegatorPool: number; totalEligibleSupply: number } | null>(null);
 
   const { writeContract, data: hash, isPending } = useWriteContract();
   const { isLoading: isConfirming, isSuccess } = useWaitForTransactionReceipt({
@@ -108,6 +108,8 @@ export function RewardsDashboard() {
         if (data.aprPercent !== undefined) {
           setAprData({
             aprPercent: data.aprPercent,
+            aprMin: data.aprMin,
+            aprMax: data.aprMax,
             monthlyDelegatorPool: data.monthlyDelegatorPool,
             totalEligibleSupply: data.totalEligibleSupply,
           });
@@ -221,7 +223,7 @@ export function RewardsDashboard() {
                   Current APR
                 </p>
                 <p className="text-2xl md:text-3xl font-bold text-[#387AF5]">
-                  {aprPercent}%
+                  Up to {aprPercent}%
                 </p>
               </div>
               <MetricCard
@@ -324,8 +326,7 @@ export function RewardsDashboard() {
             <div className="mt-6 flex items-start gap-2.5 bg-ens-blue-pale/50 rounded-xl p-3">
               <Info size={14} className="text-ens-blue/60 mt-0.5 flex-shrink-0" />
               <p className="text-xs text-ens-blue-dark/45 leading-relaxed">
-                Your reward is based on your average ENS balance over 180 days,
-                as per the ENS DAO Delegation Incentives Program.
+                Your reward is based on your average ENS balance over 180 days, per the ENS DAO Delegation Incentives Program. APY shown is the maximum possible (&gt;100% VP growth tier). Baseline APY starts at ~4%.
               </p>
             </div>
           </div>
